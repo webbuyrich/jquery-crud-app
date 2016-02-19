@@ -1,13 +1,11 @@
 <?php 
 
-$db_host = "localost";
-$db_name = "jquery_crud";
+$dbc = 'mysql:host=localhost; dbname=jquery_crud; charset=utf8';
 $db_user =	"richard";
-$db_pass =  "richard";
+$db_pass =  "ballin";
 
 try{
-	$db_con = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_pass);
-	$db_con->setAttribute(PDO::ATTR_ERROMODE, PDO::ERRMODE_EXCEPTION);
+	$db_con = new PDO($dbc, $db_user, $db_pass);	
 }
 catch(PDOException $e){
 	echo $e->getMessage();

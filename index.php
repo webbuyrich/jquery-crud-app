@@ -25,36 +25,37 @@
   			    <button class="btn btn-info" type="button" id="btn-add"><span class="glyphicon glyphicon-pencil"> Add Employee</span></button>
   			    <button class="btn btn-info" type="button" id="btn-view"><span class="glyphicon glyphicon-eye-open"> View Employee</span></button>
   			</div>
-  			<div class="row content-loader"></div>
+  			<div class="row content-loader"><img src="includes/images/ripple.svg" alt=""></div>
   			<div class="row">  			
   			  <table class="table table-striped">
   			    <thead>
   			      <tr>
-  			        <th>#</th>
-  			        <th>First Name</th>
-  			        <th>Last Name</th>
-  			        <th>Username</th>
+  			        
+  			        <th>Employee ID</th>
+  			        <th>Employee Name</th>
+  			        <th>Department</th>
+  			        <th>Salary</th>
+  			        <th>Edit</th>
+  			        <th>Delete</th>
   			      </tr>
   			    </thead>
   			    <tbody>
-  			      <tr>
-  			        <td>1</td>
-  			        <td>Mark</td>
-  			        <td>Otto</td>
-  			        <td>@mdo</td>
-  			      </tr>
-  			      <tr>
-  			        <td>2</td>
-  			        <td>Jacob</td>
-  			        <td>Thornton</td>
-  			        <td>@fat</td>
-  			      </tr>
-  			      <tr>
-  			        <td>3</td>
-  			        <td>Larry</td>
-  			        <td>the Bird</td>
-  			        <td>@twitter</td>
-  			      </tr>
+  			      <?php
+  			      	require_once 'includes/dbconfig.php';
+  			      	$stmt = $db_con->prepare('SELECT * from `tbl_employees` ORDER BY `emp_id` DESC');
+  			      	$stmt->execute();
+  			      	while($row=$stmt->fetch(PDO::FETCH_ASSOC)){ 			      	
+				  
+  			      ?>
+				   <tr>				   	
+				   	<td><?php echo $row['emp_id']; ?></td>
+				   	<td><?php echo $row['emp_name']; ?></td>
+				   	<td><?php echo $row['emp_dept']; ?></td>
+				   	<td><?php echo $row['emp_salary']; ?></td>
+				   	<td class="text-center"><a id="<?php echo $row['emp_empid']; ?>" class="edit-link" title="edit" href=""><img src="edit.png" width="20px" alt=""/></a></td>
+				   	<td class="text-center"><a id="<?php echo $row['emp_empid']; ?>" class="delete-link" title="edit" href=""><img src="delete.png" width="20px" alt=""/></a></td>
+				   </tr>
+  			      <?php }?>
   			    </tbody>
   			  </table>  			
   			</div>
