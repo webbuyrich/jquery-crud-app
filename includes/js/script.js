@@ -1,12 +1,11 @@
 $(document).ready(function(){
 
+	$('[data-toggle="tooltip"]').tooltip();
 	$('#btn-view').hide();
 	$('.content-loader').hide();
 
 	$('#btn-add').click(function(){
-		$('.content-loader').fadeOut('slow', function(){
-			$('.content-loader').fadeIn('slow');
-			$('.content-loader').load('add-form.php');
+		$('.content-loader').fadeIn('slow', function(){					
 			$('#btn-add').hide();
 			$('#btn-view').show();
 		});
@@ -17,6 +16,15 @@ $(document).ready(function(){
 			$('body').load('index.php');
 			$('body').fadeIn('slow');
 			window.location.href='index.php';
+		});
+	});
+
+
+
+	$('#btn-cancel').click(function(){
+		$('.content-loader').fadeOut('slow', function(){					
+			$('#btn-add').show();
+			$('#btn-view').hide();
 		});
 	});
 
