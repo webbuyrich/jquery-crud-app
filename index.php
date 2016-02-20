@@ -20,12 +20,15 @@
   </head>
   <body>
   	<div class="container">
-  		    <div class="row page-header">
-  			    <h2>Employee Records</h2>
-  			    <button class="btn btn-info" type="button" id="btn-add"><span class="glyphicon glyphicon-pencil"></span> Add Employee</button>
-  			    <button class="btn btn-info" type="button" id="btn-view"><span class="glyphicon glyphicon-eye-open"></span> View Employee</button>
+		    <div class="row page-header">
+			    <h2>Employee Records</h2>
+			    <button class="btn btn-info" type="button" id="btn-add"><span class="glyphicon glyphicon-pencil"></span> Add Employee</button>
+			    <button class="btn btn-info" type="button" id="btn-view"><span class="glyphicon glyphicon-eye-open"></span> View Employee</button>
 
   			</div>
+        <div class="row alert alert-success" role="alert" id="creation-message-success"></div>
+        <div class="row alert alert-danger" role="alert" id="creation-message-error"></div>
+
   			<div class="row content-loader">
          
               <div class="display"></div>
@@ -50,37 +53,7 @@
         </div>
         <div class="row" id="new-user-creation"></div>
   			<div class="row" id="emp-table">  			
-  			  <table class="table table-striped">
-  			    <thead>
-  			      <tr>
-  			        
-  			        <th>Employee ID</th>
-  			        <th>Employee Name</th>
-  			        <th>Department</th>
-  			        <th>Salary</th>
-  			        <th>Edit</th>
-  			        <th>Delete</th>
-  			      </tr>
-  			    </thead>
-  			    <tbody>
-  			      <?php
-  			      	require_once 'includes/dbconfig.php';
-  			      	$stmt = $db_con->prepare('SELECT * from `tbl_employees` ORDER BY `emp_id` ASC');
-  			      	$stmt->execute();
-  			      	while($row=$stmt->fetch(PDO::FETCH_ASSOC)){ 			      	
-				  
-  			      ?>
-				   <tr>				   	
-				   	<td><?php echo $row['emp_id']; ?></td>
-				   	<td><?php echo $row['emp_name']; ?></td>
-				   	<td><?php echo $row['emp_dept']; ?></td>
-				   	<td><?php echo $row['emp_salary']; ?></td>
-				   	<td class="text-center"><a id="<?php echo $row['emp_empid']; ?>" class="edit-link" title="edit" href=""><button class="btn btn-xs btn-warning" type="submit" id="btn-edit"><span class="glyphicon glyphicon-pencil" title="Edit User"></span></button></a></td>
-				   	<td class="text-center"><a id="<?php echo $row['emp_empid']; ?>" class="delete-link" title="edit" href=""><button class="btn btn-xs btn-danger" type="submit" id="btn-edit"><span class="glyphicon glyphicon-remove" title="Edit User"></span></button></a></td>
-				   </tr>
-  			      <?php }?>
-  			    </tbody>
-  			  </table>  			
+  			  
   			</div>
   	</div>
     

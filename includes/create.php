@@ -16,7 +16,7 @@ if($_POST){
       );
     $stmt->bindParam(':ename', $emp_name);
     $stmt->bindParam(':edept', $emp_dept);
-    $stmt->bindParam(':esalary', $emp_salary);
+    $stmt->bindParam(':esalar', $emp_salary);
 
     //Check to see if data is posted to DB
     if($stmt->execute()){
