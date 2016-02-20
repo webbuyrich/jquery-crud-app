@@ -28,4 +28,10 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#btn-save').click(function(e){
+		e.preventDefault();
+		var data = $("form").serialize();
+		console.log(data);
+	});
+
 });
