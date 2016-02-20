@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	$('#btn-view').hide();
 	$('.content-loader').hide();
+	//$('#dis').hide();
 
 	$('#btn-add').click(function(){
 		$('.content-loader').fadeIn('slow', function(){					
@@ -31,7 +32,23 @@ $(document).ready(function(){
 	$('#btn-save').click(function(e){
 		e.preventDefault();
 		var data = $("form").serialize();
-		console.log(data);
+		$.post('includes/create.php', data).done(function(values){
+			$('#new-user-creation').fadeIn('slow', function(){				
+				if(values.indexOf('Sorry') == -1){
+					$('#new-user-creation').html('<div class="alert alert-success" role="alert" id="creation-success-message">'+values+'</div>').fadeIn('slow');
+					
+					$('#emp-SaveForm')[0].reset();
+					setTimeout(function(){
+						window.location.href='index.php';
+					}, 8000);
+				} else{
+					$('#new-user-creation').html('<div class="alert alert-danger" role="alert">'+values+'</div>').fadeIn('slow');
+				}
+
+				
+				
+			});
+		});
 	});
 
 });
